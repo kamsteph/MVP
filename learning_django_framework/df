@@ -1,0 +1,21 @@
+#From Code with Mosh
+1. Migrations for database tables
+2. apps.py for configuration of the app
+3. models.py for the classes that will store database value
+4. tests.py for unit testing
+5. admin.py for admin config for the app
+6. views.py is the one giving response to the request from the front-end
+(request handler)
+7. Template is the part in django which the user sees
+
+ideal position: self-contained and zero coupling for a good model
+realistic: minimal coupling and proper containance
+
+#From django vid
+step guide for ORM(object relational mapping)
+1. Create model class(es) and register in admin
+2. Migrate (creating the database through 2 commands for preparation and migration)
+
+**if Template dir is not named template, then in urls in app, u have to include dir (based on vid)
+**block content is for modifiable data (if inherited page)
+

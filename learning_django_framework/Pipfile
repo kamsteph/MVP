@@ -1,0 +1,24 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+asgiref = "==3.11.1"
+certifi = "==2026.2.25"
+distlib = "==0.4.0"
+django = "==6.0.3"
+filelock = "==3.25.2"
+packaging = "==26.0"
+pipenv = "==2026.5.0"
+platformdirs = "==4.9.4"
+python-discovery = "==1.2.1"
+sqlparse = "==0.5.5"
+tzdata = "==2025.3"
+virtualenv = "==21.2.0"
+django-debug-toolbar = "*"
+
+[dev-packages]
+
+[requires]
+python_version = "3.13"
