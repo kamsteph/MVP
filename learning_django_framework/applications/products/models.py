@@ -15,6 +15,25 @@ class Product(models.Model):
     description=models.CharField(max_length=255)
     slug = models.SlugField(unique=True,blank=True)
 
+    def is_in_stock(self):
+        """Returns True if stock is greater than zero"""
+        return self.stock > 0
+
+    def update_stock(self, quantity_sold):
+        """updates the available within the shelf"""
+        if self.stock >= quantity_sold:
+            self.stock -= quantity_sold
+            self.save()
+            return True
+        return False
+
+    def save(self,*args,**kwargs): #generate_slug method in class diagram
+        """Generates slug for unique name pattern in url"""
+        if not self.slug:
+            self.slug = slugify(self.title)
+
+        super().save(*args,**kwargs)
+
 class Category(models.Model):
     name = models.CharField(max_length=100)
     slug = models.SlugField(unique=True)
@@ -22,25 +41,5 @@ class Category(models.Model):
     def get_product_count(self):
         """Counts the amount of product"""
         return self.products.count()
-
-
-def is_in_stock(self):
-    """Returns True if stock is greater than zero"""
-    return self.stock > 0
-
-def update_stock(self, quantity_sold):
-    """updates the available within the shelf"""
-    if self.stock >= quantity_sold:
-        self.stock -= quantity_sold
-        self.save()
-        return True
-    return False
-
-def save(self,*args,**kwargs): #generate_slug method in class diagram
-    """Generates slug for unique name pattern in url"""
-    if not self.slug:
-        self.slug = slugify(self.title)
-
-    super().save(*args,**kwargs)
 
 
