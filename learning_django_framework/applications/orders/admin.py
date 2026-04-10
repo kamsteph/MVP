@@ -3,7 +3,6 @@ from .models import Order,OrderItem
 
 # Register your models here.
 # This allows edition of OrderItems directly inside the Order page (admin.TabularInline)
-
 class OrderItemInLine(admin.TabularInline):
     model = OrderItem
     extra = 1

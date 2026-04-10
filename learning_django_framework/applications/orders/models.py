@@ -2,7 +2,7 @@ from email.policy import default
 
 from django.db import models
 from applications.products.models import Product
-from enum import Enum
+from django.conf import settings
 
 # Create your models here
 class Order(models.Model):
@@ -10,6 +10,7 @@ class Order(models.Model):
         ('PENDING', 'pending'),
         ('COMPLETED', 'Completed')
     ]
+    idUser = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE,related_name='orders')
     createdAt=models.DateTimeField()
     totalPaid=models.DecimalField(max_digits=10,decimal_places=2)
     status=models.CharField(max_length=20,choices=STATUS_CHOICES, default='PENDING')
@@ -31,7 +32,7 @@ class Order(models.Model):
 class OrderItem(models.Model):
     priceProduct=models.DecimalField(max_digits=10,decimal_places=2)
     qtyProduct=models.IntegerField()
-    idProduct=models.ForeignKey(Product, on_delete=models.CASCADE)
+    idProduct=models.ForeignKey(Product, on_delete=models.PROTECT)
     idOrder=models.ForeignKey(Order,on_delete=models.CASCADE,related_name ='items')
 
     def get_subtotal(self):

@@ -8,12 +8,13 @@ class User(AbstractUser):
     email=models.CharField(max_length=100)
     isVendor=models.BooleanField(default=False)
     isCustomer=models.BooleanField(default=False)
-    dateJoined=models.DateTimeField()
 
 #No need for adding password field since it is inherited from Abstract User
-def get_full_name(self):
-    """Returns the full name of the user"""
-    return self.username
+    def get_full_name(self):
+        """Returns the full name of the user"""
+        return self.username
 
-def get_active_orders(self):
-    """Returns the list of orders which are still active"""
+    def get_active_orders(self):
+        """Returns the list of orders which are still active"""
+
+        return self.orders.filter(status='PENDING')

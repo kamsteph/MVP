@@ -8,4 +8,4 @@ class CustomUserAdmin(UserAdmin):
     fieldsets = UserAdmin.fieldsets + (
         ('Marketplace Role', {'fields': ('is_vendor', 'is_customer')}),
     )
-    list_display = ['username', 'email', 'is_vendor', 'is_staff']
+    list_display = ['username', 'email', 'is_vendor', 'dateJoined']
