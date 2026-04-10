@@ -2,12 +2,13 @@ from django.contrib import admin
 from .models import Order,OrderItem
 
 # Register your models here.
-@admin.register(Order)
-class OrderAdmin(admin.TabularInline):
+# This allows edition of OrderItems directly inside the Order page (admin.TabularInline)
+
+class OrderItemInLine(admin.TabularInline):
     model = OrderItem
     extra = 1
 
-@admin.register(OrderItem)
+@admin.register(Order)
 class OrderItemAdmin(admin.ModelAdmin):
     list_display = ['id', 'createdAt', 'status', 'totalAmount']
-    inlines = [OrderItemInline]
+    inlines = [OrderItemInLine]
