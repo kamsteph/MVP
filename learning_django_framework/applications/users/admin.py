@@ -6,6 +6,6 @@ from .models import User
 @admin.register(User)
 class CustomUserAdmin(UserAdmin):
     fieldsets = UserAdmin.fieldsets + (
-        ('Marketplace Role', {'fields': ('is_vendor', 'is_customer')}),
+        ('Marketplace Role', {'fields': ('isVendor', 'isCustomer')}),
     )
-    list_display = ['username', 'email', 'is_vendor', 'dateJoined']
+    list_display = ['username', 'email', 'isVendor', 'date_joined']

@@ -39,3 +39,13 @@ class OrderItem(models.Model):
         """Returns the calculated price for this specific line item"""
         return self.priceProduct * self.qtyProduct
 
+    def save(self, *args, **kwargs):
+        #captures the product
+        product = self.idProduct
+
+        if product.update_stock(self.qtyProduct):
+            super().save(*args,**kwargs)
+        else:
+            raise ValueError(f"Insufficient stock for {product.title}")
+
+
