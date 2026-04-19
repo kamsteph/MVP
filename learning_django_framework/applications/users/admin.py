@@ -12,10 +12,6 @@ class ProfileInline(admin.StackedInline):
 class CustomUserAdmin(UserAdmin):
     inlines = (ProfileInline,) # profile edited directly inside user page
 
-    fieldsets = UserAdmin.fieldsets + (
-        ('Marketplace Info', {'fields': ('email',)}),
-    )
-
     list_display = ('username', 'email', 'get_role', 'is_active', 'date_joined')
     list_filter = ('is_active', 'is_staff', 'profile__role')
     search_fields = ('username', 'email')
